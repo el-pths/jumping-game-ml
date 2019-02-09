@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -30,13 +31,26 @@ public class JGField extends JPanel {
 
 	private void onInit() {
 		// framer = new Timer(10, this);
-		framer.start();
+		//framer.start();
 		createJmp();
 
 	}
 
 	private void createJmp() {
 		xpos = 885;
+
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (rnng) {
+			g.drawOval(352, ypos, 64, 64);
+			g.drawRect(xpos - 100, 412, 100, 100);
+			g.drawString(Integer.toString(score), 16, 16);
+		} else {
+			g.drawString("YOU LOSE. SCORE: " + Integer.toString(score), 16, 16);
+		}
 
 	}
 
