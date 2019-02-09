@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 import javax.swing.JPanel;
 
 /**
@@ -8,5 +10,19 @@ import javax.swing.JPanel;
  *
  */
 public class JGField extends JPanel {
+
+	public JGField() {
+		setBackground(Color.white);
+		onInit();
+
+	}
+
+	private void onInit() {
+		createJmp();
+
+	}
+
+	private void createJmp() {
+	}
 
 }
