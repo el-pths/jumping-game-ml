@@ -62,32 +62,32 @@ public class JGField extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-        if (rnng) {
-            if (isjmp) {
-                ypos -= ux * 0.1;
-                ux -= 1;
-            }
-            if (ypos == 448) {
-                isjmp = false;
-            }
-            if (xpos != 0) {
-                xpos -= 5;
-            } else {
-                createJmp();
-            }
-            if (xpos >= 352 && xpos <= 516) {
-                if (ypos >= 348) {
-                    rnng = false;
-                } else if (flag) {
-                    score++;
-                    flag = false;
-                }
-            } else {
-                flag = true;
-            }
-        }
-        repaint();
-    }
+		if (rnng) {
+			if (isjmp) {
+				ypos -= ux * 0.1;
+				ux -= 1;
+			}
+			if (ypos == 448) {
+				isjmp = false;
+			}
+			if (xpos != 0) {
+				xpos -= 5;
+			} else {
+				createJmp();
+			}
+			if (xpos >= 352 && xpos <= 516) {
+				if (ypos >= 348) {
+					rnng = false;
+				} else if (flag) {
+					score++;
+					flag = false;
+				}
+			} else {
+				flag = true;
+			}
+		}
+		repaint();
+	}
 
 	class keyTime extends KeyAdapter {
 		@Override
