@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
 /**
  * MacleoJG (jumping-game-ml) Simple jumping game which can be controlled by
  * accelerometer via arduino
@@ -90,14 +91,14 @@ public class JGField extends JPanel implements ActionListener {
 
 	class keyTime extends KeyAdapter {
 		@Override
-        public void keyPressed(KeyEvent e) {
-            super.keyPressed(e);
-            kkd = e.getKeyCode();
-            if (kkd == KeyEvent.VK_SPACE && ! isjmp) {
-                isjmp = true;
-                ux = jmpow;
-            }
-        }
+		public void keyPressed(KeyEvent e) {
+			super.keyPressed(e);
+			kkd = e.getKeyCode();
+			if (kkd == KeyEvent.VK_SPACE && ! isjmp) {
+				isjmp = true;
+				ux = jmpow;
+			}
+		}
 	}
 
 }
