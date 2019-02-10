@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -28,13 +31,22 @@ public class JGField extends JPanel implements ActionListener {
     private boolean rnng = true;
     private boolean isjmp = false;
     private boolean flag = true;
+    private BufferedImage human;
 
     public JGField() {
         setBackground(Color.white);
         onInit();
         addKeyListener(new KeyTime());
         setFocusable(true);
-
+        loadImages();
+    }
+    
+    private void loadImages() {
+        try {
+            human = ImageIO.read(this.getClass().getResourceAsStream("/human.png"));
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 
     private void onInit() {
@@ -53,6 +65,7 @@ public class JGField extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (rnng) {
+            drawHuman(g, (int) (System.currentTimeMillis() / 200) % 2);
             g.drawOval(352, ypos, 64, 64);
             g.drawRect(xpos - 100, 412, 100, 100);
             g.drawString(Integer.toString(score), 16, 16);
@@ -60,6 +73,12 @@ public class JGField extends JPanel implements ActionListener {
             g.drawString("YOU LOSE. SCORE: " + Integer.toString(score), 16, 16);
         }
 
+    }
+    
+    private void drawHuman(Graphics g, int frame) {
+        int imgW = human.getWidth() / 3;
+        int imgH = human.getHeight();
+        g.drawImage(human, 30, 30, 30 + imgW, 30 + imgH, frame * imgW, 0, (frame + 1) * imgW, imgH, null);
     }
 
     @Override
@@ -88,7 +107,7 @@ public class JGField extends JPanel implements ActionListener {
                 flag = true;
             }
         }
-        repaint();
+        repaint(30);
     }
 
     class KeyTime extends KeyAdapter {
